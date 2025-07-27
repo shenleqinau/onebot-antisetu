@@ -1,0 +1,5 @@
+numpy
+Pillow
+aiohttp
+websockets
+https://github.com/W1412X/SensitiveImgDetect/releases/download/v0.1.5/SensitiveImgDetect-0.1.5-py3-none-any.whl
