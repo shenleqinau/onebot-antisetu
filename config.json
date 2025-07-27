@@ -2,14 +2,14 @@
   "napcat_ws_url": "ws://localhost:3001",
   "napcat_http_url": "http://localhost:3000",
   "admin_qq_list": [
-    "123456789",
-    "987654321"
+    "778889944",
+    "1122334455"
   ],
   "whitelist_groups": [
-    "123456789",
-    "785458540"
+    "123456",
+    "789456"
   ],
-  "bot_qq": "1234567890",
+  "bot_qq": "123456",
   "model_config": {
     "version": "v2",
     "labels": [
@@ -28,8 +28,9 @@
     "sex"
   ],
   "auto_recall_groups": [
-    "12345679",
-    "123456789"
+    "44567789",
+    "11223344566"
   ],
-  "violation_save_path": "violations"
+  "violation_save_path": "violations",
+  "model_path": "your_model_dir_or_file_path"
 }
