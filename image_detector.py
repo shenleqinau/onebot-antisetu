@@ -13,23 +13,32 @@ class ImageDetector:
         self.version = 'v2'
         self.labels = ['cartoon', 'porn', 'politic', 'other']
         self.confidence_threshold = 0.65  # 默认阈值
-        
+        self.model_path = None  # 模型路径
+
         # 从配置文件加载模型设置
         if config:
             model_config = config.get('model_config', {})
             self.version = model_config.get('version', 'v2')
             self.labels = model_config.get('labels', self.labels)
-            # 确保阈值是浮点数
             self.confidence_threshold = float(model_config.get('confidence_threshold', 0.65))
-        
-        logger.info(f"配置加载完成: 版本={self.version}, 标签={self.labels}, 阈值={self.confidence_threshold}")
+            # 读取模型路径，只有非空且非默认才用
+            model_path = config.get('model_path', None)
+            if model_path and model_path != "your_model_dir_or_file_path":
+                self.model_path = model_path
+            else:
+                self.model_path = None
+
+        logger.info(f"配置加载完成: 版本={self.version}, 标签={self.labels}, 阈值={self.confidence_threshold}, 模型路径={self.model_path}")
         self._initialize_detector()
-    
+
     def _initialize_detector(self):
         """初始化SensitiveImgDetect模型"""
         try:
-            # 初始化模型检测器，使用CPU
-            self.detector = Detect(device='cpu', version=self.version)
+            # 支持自定义模型路径
+            if self.model_path:
+                self.detector = Detect(device='cpu', version=self.version, model_path=self.model_path)
+            else:
+                self.detector = Detect(device='cpu', version=self.version)
             logger.info(f"SensitiveImgDetect模型加载成功")
         except Exception as e:
             logger.error(f"模型初始化失败: {e}")
