@@ -25,11 +25,11 @@ class ConfigManager:
     def __init__(self, config_file: str = 'config.json'):
         self.config_file = config_file
         self.config = self.load_config()
-        # 新增自动撤回白名单
+        # 自动撤回白名单
         if "auto_recall_groups" not in self.config:
             self.config["auto_recall_groups"] = []
             self.save_config()
-        # 新增违规图片保存路径
+        # 违规图片保存路径
         if "violation_save_path" not in self.config:
             self.config["violation_save_path"] = "violations"
             self.save_config()
